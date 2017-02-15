@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    
+    <h:form>
+        <p:growl id="msgs" showDetail="true" />
+        <p:outputLabel for="fecha1" value="Fecha Inicio:" />
+        <p:inputText id="fecha1" value="2"/>
+
+        <p:outputLabel for="fecha2" value="Fecha Fin:" />
+        <p:inputText id="fecha2" value="1"  />
+        <p:commandButton value="Submit" update="msgs" actionListener="#{transaccionesJSFManagedBean.getFecha(fecha1, fecha2)}" icon="ui-icon-check" />
+
+    </h:form>
+
+    
+    <h:form id="TransaccionesListForm">
+
+        <p:panel header="Reporte Detallado">
+            <p:contextMenu id="TransaccionesDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('TransaccionesListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('TransaccionesListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('TransaccionesListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TransaccionesListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+        
+            <p:dataTable id="datalist"
+                         value="#{transaccionesController.items}"
+                         lazy="false"
+                         rowKey="#{item.idTransaccion}"
+                         var="item"
+                         paginator="true"
+                         rows="20"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{transaccionesController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{transaccionesController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idTransaccion}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TransaccionesDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:TransaccionesDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('TransaccionesListForm:viewButton').click();"/>
+<!--
+                <p:column sortBy="#{item.idTransaccion}" filterBy="#{item.idTransaccion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_idTransaccion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idTransaccion}"/>
+                </p:column>
+-->
+
+                <p:column sortBy="#{item.nombreCliente}" filterBy="#{item.nombreCliente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_nombreCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreCliente}"/>
+                </p:column>
+
+<!--
+                <p:column sortBy="#{item.idPunto}" filterBy="#{item.idPunto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_idPunto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idPunto}"/>
+                </p:column>
+
+-->
+                <p:column sortBy="#{item.punto}" filterBy="#{item.punto}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_punto}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.punto}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.fecha}" filterBy="#{item.fecha}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_fecha}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fecha}"/>
+                </p:column>
+
+<!--
+                <p:column sortBy="#{item.hora}" filterBy="#{item.hora}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListTransaccionesTitle_hora}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.hora}"/>
+                </p:column>
+
+        
+                                    <p:column sortBy="#{item.idProducto}" filterBy="#{item.idProducto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_idProducto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idProducto}"/>
+                                    </p:column>
+-->                  
+                                    <p:column sortBy="#{item.descProducto}" filterBy="#{item.descProducto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_descProducto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.descProducto}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.cantidad}" filterBy="#{item.cantidad}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_cantidad}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cantidad}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.valorNeto}" filterBy="#{item.valorNeto}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_valorNeto}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.valorNeto}"/>
+                                    </p:column>
+                
+                                    <p:column sortBy="#{item.valorDesc}" filterBy="#{item.valorDesc}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_valorDesc}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.valorDesc}"/>
+                                    </p:column>
+                
+                                    <p:column sortBy="#{item.porcentajeDesc}" filterBy="#{item.porcentajeDesc}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_porcentajeDesc}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.porcentajeDesc}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.totalConsumo}" filterBy="#{item.totalConsumo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_totalConsumo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.totalConsumo}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.cajero}" filterBy="#{item.cajero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_cajero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.cajero}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.mesero}" filterBy="#{item.mesero}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_mesero}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.mesero}"/>
+                                    </p:column>
+ <!--               
+                                    <p:column sortBy="#{item.numDocumento}" filterBy="#{item.numDocumento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_numDocumento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numDocumento}"/>
+                                    </p:column>
+                
+                                    <p:column sortBy="#{item.tipoDocumento}" filterBy="#{item.tipoDocumento}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_tipoDocumento}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tipoDocumento}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.numLicencia}" filterBy="#{item.numLicencia}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_numLicencia}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.numLicencia}"/>
+                                    </p:column>
+                
+                                    <p:column sortBy="#{item.fechaTransaccion}" filterBy="#{item.fechaTransaccion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_fechaTransaccion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fechaTransaccion}"/>
+                                    </p:column>
+               -->
+                                    <p:column sortBy="#{item.tipoFuncionario}" filterBy="#{item.tipoFuncionario}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_tipoFuncionario}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tipoFuncionario}"/>
+                                    </p:column>
+      <!--          
+                                    <p:column sortBy="#{item.topeMax}" filterBy="#{item.topeMax}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListTransaccionesTitle_topeMax}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.topeMax}"/>
+                                    </p:column>
+               
+-->
+            </p:dataTable>
+
+            <p:commandButton id="createButton" style="visibility: hidden;" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{transaccionesController.prepareCreate}" update=":TransaccionesCreateForm" oncomplete="PF('TransaccionesCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TransaccionesViewForm" oncomplete="PF('TransaccionesViewDialog').show()" />
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":TransaccionesEditForm" oncomplete="PF('TransaccionesEditDialog').show()" />
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{transaccionesController.delete}" update=":growl,datalist" >
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+             <div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Detallado" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Detallado"/>
+                </h:commandLink>
+                
+                
+            </div>
+            
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

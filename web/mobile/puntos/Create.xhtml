@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PuntosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreatePuntosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PuntosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PuntosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{puntosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_idCliente}" for="idCliente" />
+                            <p:inputText id="idCliente" value="#{puntosController.selected.idCliente}" title="#{myBundle.CreatePuntosTitle_idCliente}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_idCliente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_nombreCliente}" for="nombreCliente" />
+                            <p:inputText id="nombreCliente" value="#{puntosController.selected.nombreCliente}" title="#{myBundle.CreatePuntosTitle_nombreCliente}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_nombreCliente}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_hotelV}" for="hotelV" />
+                            <p:inputText id="hotelV" value="#{puntosController.selected.hotelV}" title="#{myBundle.CreatePuntosTitle_hotelV}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_hotelV}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_gigisUsaquen}" for="gigisUsaquen" />
+                            <p:inputText id="gigisUsaquen" value="#{puntosController.selected.gigisUsaquen}" title="#{myBundle.CreatePuntosTitle_gigisUsaquen}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_gigisUsaquen}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_gigisZonaG}" for="gigisZonaG" />
+                            <p:inputText id="gigisZonaG" value="#{puntosController.selected.gigisZonaG}" title="#{myBundle.CreatePuntosTitle_gigisZonaG}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_gigisZonaG}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_bar440}" for="bar440" />
+                            <p:inputText id="bar440" value="#{puntosController.selected.bar440}" title="#{myBundle.CreatePuntosTitle_bar440}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_bar440}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_blackSheep}" for="blackSheep" />
+                            <p:inputText id="blackSheep" value="#{puntosController.selected.blackSheep}" title="#{myBundle.CreatePuntosTitle_blackSheep}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_blackSheep}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_bierMarket}" for="bierMarket" />
+                            <p:inputText id="bierMarket" value="#{puntosController.selected.bierMarket}" title="#{myBundle.CreatePuntosTitle_bierMarket}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_bierMarket}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_marquez}" for="marquez" />
+                            <p:inputText id="marquez" value="#{puntosController.selected.marquez}" title="#{myBundle.CreatePuntosTitle_marquez}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_marquez}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_bungalow}" for="bungalow" />
+                            <p:inputText id="bungalow" value="#{puntosController.selected.bungalow}" title="#{myBundle.CreatePuntosTitle_bungalow}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_bungalow}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_matildelina}" for="matildelina" />
+                            <p:inputText id="matildelina" value="#{puntosController.selected.matildelina}" title="#{myBundle.CreatePuntosTitle_matildelina}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_matildelina}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreatePuntosLabel_totalConsumo}" for="totalConsumo" />
+                            <p:inputText id="totalConsumo" value="#{puntosController.selected.totalConsumo}" title="#{myBundle.CreatePuntosTitle_totalConsumo}" required="true" requiredMessage="#{myBundle.CreatePuntosRequiredMessage_totalConsumo}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{puntosController.saveNew}" value="#{myBundle.Save}" update="display,:PuntosListPage:PuntosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:PuntosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TransaccionesCreateDlg" widgetVar="TransaccionesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateTransaccionesTitle}" closeOnEscape="true">
+
+            <h:form id="TransaccionesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{transaccionesController.selected != null}">
+                    <p:tabView id="TransaccionesTabView">
+
+                        <p:tab id="TransaccionesTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid columns="2" columnClasses="column">
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_nombreCliente}" for="nombreCliente" />
+                                <p:inputText id="nombreCliente" value="#{transaccionesController.selected.nombreCliente}" title="#{myBundle.CreateTransaccionesTitle_nombreCliente}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_nombreCliente}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_idPunto}" for="idPunto" />
+                                <p:inputText id="idPunto" value="#{transaccionesController.selected.idPunto}" title="#{myBundle.CreateTransaccionesTitle_idPunto}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_idPunto}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_punto}" for="punto" />
+                                <p:inputText id="punto" value="#{transaccionesController.selected.punto}" title="#{myBundle.CreateTransaccionesTitle_punto}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_punto}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_fecha}" for="fecha" />
+                                <p:inputText id="fecha" value="#{transaccionesController.selected.fecha}" title="#{myBundle.CreateTransaccionesTitle_fecha}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_hora}" for="hora" />
+                                <p:inputText id="hora" value="#{transaccionesController.selected.hora}" title="#{myBundle.CreateTransaccionesTitle_hora}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_idProducto}" for="idProducto" />
+                                <p:inputText id="idProducto" value="#{transaccionesController.selected.idProducto}" title="#{myBundle.CreateTransaccionesTitle_idProducto}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_idProducto}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_descProducto}" for="descProducto" />
+                                <p:inputText id="descProducto" value="#{transaccionesController.selected.descProducto}" title="#{myBundle.CreateTransaccionesTitle_descProducto}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_descProducto}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_cantidad}" for="cantidad" />
+                                <p:inputText id="cantidad" value="#{transaccionesController.selected.cantidad}" title="#{myBundle.CreateTransaccionesTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_cantidad}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_valorNeto}" for="valorNeto" />
+                                <p:inputText id="valorNeto" value="#{transaccionesController.selected.valorNeto}" title="#{myBundle.CreateTransaccionesTitle_valorNeto}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_valorNeto}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_valorDesc}" for="valorDesc" />
+                                <p:inputText id="valorDesc" value="#{transaccionesController.selected.valorDesc}" title="#{myBundle.CreateTransaccionesTitle_valorDesc}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_valorDesc}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_porcentajeDesc}" for="porcentajeDesc" />
+                                <p:inputText id="porcentajeDesc" value="#{transaccionesController.selected.porcentajeDesc}" title="#{myBundle.CreateTransaccionesTitle_porcentajeDesc}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_porcentajeDesc}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_totalConsumo}" for="totalConsumo" />
+                                <p:inputText id="totalConsumo" value="#{transaccionesController.selected.totalConsumo}" title="#{myBundle.CreateTransaccionesTitle_totalConsumo}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_totalConsumo}"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_cajero}" for="cajero" />
+                                <p:inputText id="cajero" value="#{transaccionesController.selected.cajero}" title="#{myBundle.CreateTransaccionesTitle_cajero}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_cajero}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_mesero}" for="mesero" />
+                                <p:inputText id="mesero" value="#{transaccionesController.selected.mesero}" title="#{myBundle.CreateTransaccionesTitle_mesero}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_mesero}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_numDocumento}" for="numDocumento" />
+                                <p:inputText id="numDocumento" value="#{transaccionesController.selected.numDocumento}" title="#{myBundle.CreateTransaccionesTitle_numDocumento}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_numDocumento}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_tipoDocumento}" for="tipoDocumento" />
+                                <p:inputText id="tipoDocumento" value="#{transaccionesController.selected.tipoDocumento}" title="#{myBundle.CreateTransaccionesTitle_tipoDocumento}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_tipoDocumento}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_numLicencia}" for="numLicencia" />
+                                <p:inputText id="numLicencia" value="#{transaccionesController.selected.numLicencia}" title="#{myBundle.CreateTransaccionesTitle_numLicencia}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_numLicencia}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_fechaTransaccion}" for="fechaTransaccion" />
+                                <p:inputText id="fechaTransaccion" value="#{transaccionesController.selected.fechaTransaccion}" title="#{myBundle.CreateTransaccionesTitle_fechaTransaccion}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_tipoFuncionario}" for="tipoFuncionario" />
+                                <p:inputText id="tipoFuncionario" value="#{transaccionesController.selected.tipoFuncionario}" title="#{myBundle.CreateTransaccionesTitle_tipoFuncionario}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_tipoFuncionario}" size="45" maxlength="45"/>
+
+                                <p:outputLabel value="#{myBundle.CreateTransaccionesLabel_topeMax}" for="topeMax" />
+                                <p:inputText id="topeMax" value="#{transaccionesController.selected.topeMax}" title="#{myBundle.CreateTransaccionesTitle_topeMax}" required="true" requiredMessage="#{myBundle.CreateTransaccionesRequiredMessage_topeMax}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{transaccionesController.saveNew}" value="#{myBundle.Save}" update="display,:TransaccionesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('TransaccionesCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('TransaccionesCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

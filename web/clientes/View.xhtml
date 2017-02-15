@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientesViewDlg" widgetVar="ClientesViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewClientesTitle}" closeOnEscape="true">
+
+            <h:form id="ClientesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{clientesController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_idCliente}"/>
+                        <h:outputText value="#{clientesController.selected.idCliente}" title="#{myBundle.ViewClientesTitle_idCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_nombreCliente}"/>
+                        <h:outputText value="#{clientesController.selected.nombreCliente}" title="#{myBundle.ViewClientesTitle_nombreCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_tipoFuncionario}"/>
+                        <h:outputText value="#{clientesController.selected.tipoFuncionario}" title="#{myBundle.ViewClientesTitle_tipoFuncionario}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_topeMaximo}"/>
+                        <h:outputText value="#{clientesController.selected.topeMaximo}" title="#{myBundle.ViewClientesTitle_topeMaximo}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_porcentajeDescuento}"/>
+                        <h:outputText value="#{clientesController.selected.porcentajeDescuento}" title="#{myBundle.ViewClientesTitle_porcentajeDescuento}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_fechaCreacion}"/>
+                        <h:outputText value="#{clientesController.selected.fechaCreacion}" title="#{myBundle.ViewClientesTitle_fechaCreacion}"/>
+
+                        <h:outputText value="#{myBundle.ViewClientesLabel_fechaModificacion}"/>
+                        <h:outputText value="#{clientesController.selected.fechaModificacion}" title="#{myBundle.ViewClientesTitle_fechaModificacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ClientesViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

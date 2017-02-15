@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovimientosViewDlg" widgetVar="MovimientosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewMovimientosTitle}" closeOnEscape="true">
+
+            <h:form id="MovimientosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{movimientosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_idMovimiento}"/>
+                        <h:outputText value="#{movimientosController.selected.idMovimiento}" title="#{myBundle.ViewMovimientosTitle_idMovimiento}"/>
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_saldoInicial}"/>
+                        <h:outputText value="#{movimientosController.selected.saldoInicial}" title="#{myBundle.ViewMovimientosTitle_saldoInicial}"/>
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_debito}"/>
+                        <h:outputText value="#{movimientosController.selected.debito}" title="#{myBundle.ViewMovimientosTitle_debito}"/>
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_credito}"/>
+                        <h:outputText value="#{movimientosController.selected.credito}" title="#{myBundle.ViewMovimientosTitle_credito}"/>
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_saldoDisponible}"/>
+                        <h:outputText value="#{movimientosController.selected.saldoDisponible}" title="#{myBundle.ViewMovimientosTitle_saldoDisponible}"/>
+
+                        <h:outputText value="#{myBundle.ViewMovimientosLabel_idCliente}"/>
+                        <h:outputText value="#{movimientosController.selected.idCliente.idCliente}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('MovimientosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientesCreateDlg" widgetVar="ClientesCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateClientesTitle}" closeOnEscape="true">
+
+            <h:form id="ClientesCreateForm">
+
+                <h:panelGroup id="display" rendered="#{clientesController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_idCliente}" for="idCliente" />
+                        <p:inputText id="idCliente" value="#{clientesController.selected.idCliente}" title="#{myBundle.CreateClientesTitle_idCliente}" required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_idCliente}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_nombreCliente}" for="nombreCliente" />
+                        <p:inputText id="nombreCliente" value="#{clientesController.selected.nombreCliente}" title="#{myBundle.CreateClientesTitle_nombreCliente}" required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_nombreCliente}" size="45" maxlength="45"/>
+                     
+                        
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_tipoFuncionario}" for="tipoFuncionario" />
+                        <p:selectOneMenu id="tipoFuncionario" value="#{clientesController.selected.tipoFuncionario}" style="width:125px"  required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_tipoFuncionario}"  >
+                            <f:selectItem itemLabel="Selecciona una" itemValue="" />
+                            <f:selectItem itemLabel="Fijo" itemValue="Fijo" />
+                            <f:selectItem itemLabel="Turnante" itemValue="Turnante" />
+
+                        </p:selectOneMenu>
+                        
+                        
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_topeMaximo}" for="topeMaximo" />
+                        <p:inputText id="topeMaximo" value="#{clientesController.selected.topeMaximo}" title="#{myBundle.CreateClientesTitle_topeMaximo}" required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_topeMaximo}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_porcentajeDescuento}" for="porcentajeDescuento" />
+                        <p:inputText id="porcentajeDescuento" value="#{clientesController.selected.porcentajeDescuento}" title="#{myBundle.CreateClientesTitle_porcentajeDescuento}" required="true" requiredMessage="#{myBundle.CreateClientesRequiredMessage_porcentajeDescuento}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:inputText id="fechaCreacion" value="#{clientesController.selected.fechaCreacion}" title="#{myBundle.CreateClientesTitle_fechaCreacion}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.CreateClientesLabel_fechaModificacion}" for="fechaModificacion" />
+                        <p:inputText id="fechaModificacion" value="#{clientesController.selected.fechaModificacion}" title="#{myBundle.CreateClientesTitle_fechaModificacion}" size="45" maxlength="45"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clientesController.saveNew}" value="#{myBundle.Save}" update="display,:ClientesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ClientesCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ClientesCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

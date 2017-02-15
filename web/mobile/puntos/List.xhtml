@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PuntosListPage">
+        <pm:header title="#{myBundle.ListPuntosTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":PuntosCreatePage:PuntosCreateForm" actionListener="#{puntosController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:PuntosCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PuntosListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{puntosController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":PuntosEditPage:PuntosEditForm" action="pm:PuntosEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.idCliente}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.nombreCliente}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.hotelV}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.gigisUsaquen}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.gigisZonaG}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.bar440}"/>
+
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.blackSheep}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.bierMarket}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.marquez}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.bungalow}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.matildelina}"/>
+                            -->
+
+                            <!--
+                                ,&nbsp;
+                                                    <h:outputText value="#{item.totalConsumo}"/>
+                            -->
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{puntosController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListPuntosTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

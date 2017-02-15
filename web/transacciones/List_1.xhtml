@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                
+                
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+ <h:form>
+        <p:growl id="msgs" showDetail="true" />
+        <p:outputLabel for="Inicio" value="Fecha Inicio:" />
+        <p:calendar id="Inicio" value="#{calendarView.date3}" showOn="button" />
+
+        <p:outputLabel for="Fin" value="Fecha Fin:" />
+        <p:calendar id="Fin" value="#{calendarView.date3}" showOn="button" />
+        <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+
+    </h:form>
+    
+    <h:form id="TransaccionesListForm">
+        <p:panel header="Reporte Resumido"></p:panel>
+        <p:panel>
+        <p:dataTable id="datalist" var="transac" value="#{transaccionesJSFManagedBean.listar}" 
+                     filteredValue="#{transaccionesJSFManagedBean.filtroCliente}"
+                         emptyMessage="No se encontro registro" 
+                         rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+            
+            
+            <p:column headerText="Nombre Cliente"  filterBy="#{transac.cliente}" >
+                    <h:outputText value="#{transac.cliente}"/>
+                </p:column>
+               
+                <p:column headerText="Tope Maximo" >
+                    <h:outputText value="#{transac.tope}"/>
+                </p:column>
+                 
+                <p:column headerText="Porcentaje de Descuento" >
+                    <h:outputText value="#{transac.porcentaje}"/>
+                </p:column>
+                
+                <p:column headerText="Tipo Funcionario" >
+                    <h:outputText value="#{transac.tipo}"/>
+                </p:column>
+      
+                <p:column headerText="Consumo">
+                    <h:outputText value="#{transac.total}"/>
+                </p:column>
+                
+          
+            </p:dataTable>
+            </p:panel>
+        <div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Resumido" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Resumido"/>
+                </h:commandLink>
+                
+                
+            </div>
+        </h:form>
+    
+</ui:composition>

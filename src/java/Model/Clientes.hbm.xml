@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/02/2017 01:11:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Clientes" table="clientes" catalog="emacdatabase" optimistic-lock="version">
+        <id name="idCliente" type="int">
+            <column name="idCliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreCliente" type="string">
+            <column name="nombreCliente" length="45" not-null="true" />
+        </property>
+        <property name="tipoFuncionario" type="string">
+            <column name="tipoFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="topeMaximo" type="float">
+            <column name="topeMaximo" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="porcentajeDescuento" type="float">
+            <column name="porcentajeDescuento" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="fechaCreacion" type="string">
+            <column name="fechaCreacion" length="45" />
+        </property>
+        <property name="fechaModificacion" type="string">
+            <column name="fechaModificacion" length="45" />
+        </property>
+        <set name="movimientoses" table="movimientos" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idCliente" not-null="true" />
+            </key>
+            <one-to-many class="Model.Movimientos" />
+        </set>
+    </class>
+</hibernate-mapping>

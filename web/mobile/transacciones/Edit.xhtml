@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="TransaccionesEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditTransaccionesTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:TransaccionesListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="TransaccionesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TransaccionesTabView">
+
+                        <p:tab id="TransaccionesTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:outputPanel rendered="#{transaccionesController.selected != null}">
+                                <pm:field>
+                                    <h:outputLabel value="#{myBundle.EditTransaccionesLabel_idTransaccion}" for="idTransaccion" />
+                                    <h:outputText id="idTransaccion" value="#{transaccionesController.selected.idTransaccion}" />
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_nombreCliente}" for="nombreCliente" />
+                                    <p:inputText id="nombreCliente" value="#{transaccionesController.selected.nombreCliente}" title="#{myBundle.EditTransaccionesTitle_nombreCliente}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_nombreCliente}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_idPunto}" for="idPunto" />
+                                    <p:inputText id="idPunto" value="#{transaccionesController.selected.idPunto}" title="#{myBundle.EditTransaccionesTitle_idPunto}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_idPunto}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_punto}" for="punto" />
+                                    <p:inputText id="punto" value="#{transaccionesController.selected.punto}" title="#{myBundle.EditTransaccionesTitle_punto}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_punto}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_fecha}" for="fecha" />
+                                    <p:inputText id="fecha" value="#{transaccionesController.selected.fecha}" title="#{myBundle.EditTransaccionesTitle_fecha}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_hora}" for="hora" />
+                                    <p:inputText id="hora" value="#{transaccionesController.selected.hora}" title="#{myBundle.EditTransaccionesTitle_hora}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_idProducto}" for="idProducto" />
+                                    <p:inputText id="idProducto" value="#{transaccionesController.selected.idProducto}" title="#{myBundle.EditTransaccionesTitle_idProducto}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_idProducto}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_descProducto}" for="descProducto" />
+                                    <p:inputText id="descProducto" value="#{transaccionesController.selected.descProducto}" title="#{myBundle.EditTransaccionesTitle_descProducto}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_descProducto}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_cantidad}" for="cantidad" />
+                                    <p:inputText id="cantidad" value="#{transaccionesController.selected.cantidad}" title="#{myBundle.EditTransaccionesTitle_cantidad}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_cantidad}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_valorNeto}" for="valorNeto" />
+                                    <p:inputText id="valorNeto" value="#{transaccionesController.selected.valorNeto}" title="#{myBundle.EditTransaccionesTitle_valorNeto}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_valorNeto}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_valorDesc}" for="valorDesc" />
+                                    <p:inputText id="valorDesc" value="#{transaccionesController.selected.valorDesc}" title="#{myBundle.EditTransaccionesTitle_valorDesc}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_valorDesc}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_porcentajeDesc}" for="porcentajeDesc" />
+                                    <p:inputText id="porcentajeDesc" value="#{transaccionesController.selected.porcentajeDesc}" title="#{myBundle.EditTransaccionesTitle_porcentajeDesc}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_porcentajeDesc}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_totalConsumo}" for="totalConsumo" />
+                                    <p:inputText id="totalConsumo" value="#{transaccionesController.selected.totalConsumo}" title="#{myBundle.EditTransaccionesTitle_totalConsumo}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_totalConsumo}"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_cajero}" for="cajero" />
+                                    <p:inputText id="cajero" value="#{transaccionesController.selected.cajero}" title="#{myBundle.EditTransaccionesTitle_cajero}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_cajero}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_mesero}" for="mesero" />
+                                    <p:inputText id="mesero" value="#{transaccionesController.selected.mesero}" title="#{myBundle.EditTransaccionesTitle_mesero}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_mesero}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_numDocumento}" for="numDocumento" />
+                                    <p:inputText id="numDocumento" value="#{transaccionesController.selected.numDocumento}" title="#{myBundle.EditTransaccionesTitle_numDocumento}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_numDocumento}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_tipoDocumento}" for="tipoDocumento" />
+                                    <p:inputText id="tipoDocumento" value="#{transaccionesController.selected.tipoDocumento}" title="#{myBundle.EditTransaccionesTitle_tipoDocumento}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_tipoDocumento}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_numLicencia}" for="numLicencia" />
+                                    <p:inputText id="numLicencia" value="#{transaccionesController.selected.numLicencia}" title="#{myBundle.EditTransaccionesTitle_numLicencia}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_numLicencia}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_fechaTransaccion}" for="fechaTransaccion" />
+                                    <p:inputText id="fechaTransaccion" value="#{transaccionesController.selected.fechaTransaccion}" title="#{myBundle.EditTransaccionesTitle_fechaTransaccion}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_tipoFuncionario}" for="tipoFuncionario" />
+                                    <p:inputText id="tipoFuncionario" value="#{transaccionesController.selected.tipoFuncionario}" title="#{myBundle.EditTransaccionesTitle_tipoFuncionario}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_tipoFuncionario}" size="45" maxlength="45"/>
+                                </pm:field>
+
+                            </p:outputPanel>
+                        </p:tab>
+                        <p:tab id="TransaccionesTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:outputPanel rendered="#{transaccionesController.selected != null}">
+                                <pm:field>
+                                    <p:outputLabel value="#{myBundle.EditTransaccionesLabel_topeMax}" for="topeMax" />
+                                    <p:inputText id="topeMax" value="#{transaccionesController.selected.topeMax}" title="#{myBundle.EditTransaccionesTitle_topeMax}" required="true" requiredMessage="#{myBundle.EditTransaccionesRequiredMessage_topeMax}"/>
+                                </pm:field>
+                            </p:outputPanel>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton actionListener="#{transaccionesController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:TransaccionesListPage:TransaccionesListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:TransaccionesListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

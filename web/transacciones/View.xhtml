@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TransaccionesViewDlg" widgetVar="TransaccionesViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewTransaccionesTitle}" closeOnEscape="true">
+
+            <h:form id="TransaccionesViewForm">
+
+                <h:panelGroup id="display">
+                    <p:tabView id="TransaccionesTabView">
+
+                        <p:tab id="TransaccionesTab1" title="#{myBundle.TabHeaderPrefix} 1">
+                            <p:panelGrid columns="2" columnClasses="column" rendered="#{transaccionesController.selected != null}">
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_idTransaccion}"/>
+                                <h:outputText value="#{transaccionesController.selected.idTransaccion}" title="#{myBundle.ViewTransaccionesTitle_idTransaccion}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_nombreCliente}"/>
+                                <h:outputText value="#{transaccionesController.selected.nombreCliente}" title="#{myBundle.ViewTransaccionesTitle_nombreCliente}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_idPunto}"/>
+                                <h:outputText value="#{transaccionesController.selected.idPunto}" title="#{myBundle.ViewTransaccionesTitle_idPunto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_punto}"/>
+                                <h:outputText value="#{transaccionesController.selected.punto}" title="#{myBundle.ViewTransaccionesTitle_punto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_fecha}"/>
+                                <h:outputText value="#{transaccionesController.selected.fecha}" title="#{myBundle.ViewTransaccionesTitle_fecha}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_hora}"/>
+                                <h:outputText value="#{transaccionesController.selected.hora}" title="#{myBundle.ViewTransaccionesTitle_hora}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_idProducto}"/>
+                                <h:outputText value="#{transaccionesController.selected.idProducto}" title="#{myBundle.ViewTransaccionesTitle_idProducto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_descProducto}"/>
+                                <h:outputText value="#{transaccionesController.selected.descProducto}" title="#{myBundle.ViewTransaccionesTitle_descProducto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_cantidad}"/>
+                                <h:outputText value="#{transaccionesController.selected.cantidad}" title="#{myBundle.ViewTransaccionesTitle_cantidad}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_valorNeto}"/>
+                                <h:outputText value="#{transaccionesController.selected.valorNeto}" title="#{myBundle.ViewTransaccionesTitle_valorNeto}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_valorDesc}"/>
+                                <h:outputText value="#{transaccionesController.selected.valorDesc}" title="#{myBundle.ViewTransaccionesTitle_valorDesc}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_porcentajeDesc}"/>
+                                <h:outputText value="#{transaccionesController.selected.porcentajeDesc}" title="#{myBundle.ViewTransaccionesTitle_porcentajeDesc}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_totalConsumo}"/>
+                                <h:outputText value="#{transaccionesController.selected.totalConsumo}" title="#{myBundle.ViewTransaccionesTitle_totalConsumo}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_cajero}"/>
+                                <h:outputText value="#{transaccionesController.selected.cajero}" title="#{myBundle.ViewTransaccionesTitle_cajero}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_mesero}"/>
+                                <h:outputText value="#{transaccionesController.selected.mesero}" title="#{myBundle.ViewTransaccionesTitle_mesero}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_numDocumento}"/>
+                                <h:outputText value="#{transaccionesController.selected.numDocumento}" title="#{myBundle.ViewTransaccionesTitle_numDocumento}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_tipoDocumento}"/>
+                                <h:outputText value="#{transaccionesController.selected.tipoDocumento}" title="#{myBundle.ViewTransaccionesTitle_tipoDocumento}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_numLicencia}"/>
+                                <h:outputText value="#{transaccionesController.selected.numLicencia}" title="#{myBundle.ViewTransaccionesTitle_numLicencia}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_fechaTransaccion}"/>
+                                <h:outputText value="#{transaccionesController.selected.fechaTransaccion}" title="#{myBundle.ViewTransaccionesTitle_fechaTransaccion}"/>
+
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_tipoFuncionario}"/>
+                                <h:outputText value="#{transaccionesController.selected.tipoFuncionario}" title="#{myBundle.ViewTransaccionesTitle_tipoFuncionario}"/>
+
+                            </p:panelGrid>
+                        </p:tab>
+                        <p:tab id="TransaccionesTab2" title="#{myBundle.TabHeaderPrefix} 2">
+                            <p:panelGrid columns="2" columnClasses="column" rendered="#{transaccionesController.selected != null}">
+                                <h:outputText value="#{myBundle.ViewTransaccionesLabel_topeMax}"/>
+                                <h:outputText value="#{transaccionesController.selected.topeMax}" title="#{myBundle.ViewTransaccionesTitle_topeMax}"/>
+                            </p:panelGrid>
+                        </p:tab>
+                    </p:tabView>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('TransaccionesViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

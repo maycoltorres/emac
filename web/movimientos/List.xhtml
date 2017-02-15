@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form>
+    
+<p:growl id="msgs" showDetail="true" />
+            <p:outputLabel for="Inicio" value="Fecha Inicio:" />
+        <p:calendar id="Inicio" value="#{calendarView.date3}" showOn="button" />
+        
+        <p:outputLabel for="Fin" value="Fecha Fin:" />
+        <p:calendar id="Fin" value="#{calendarView.date3}" showOn="button" />
+            <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+</h:form>
+    
+    <h:form id="MovimientosListForm">
+
+        <p:panel header="#{myBundle.ListMovimientosTitle}">
+            <p:contextMenu id="MovimientosDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('MovimientosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('MovimientosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('MovimientosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('MovimientosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.MovimientosMenuItem_idCliente}" icon="ui-icon-search"  actionListener="#{movimientosController.prepareIdCliente}" update=":ClientesViewForm" oncomplete="PF('ClientesViewDialog').show()" disabled="#{empty movimientosController.selected.idCliente}"/>  
+            </p:contextMenu>
+            
+            
+            
+            <p:dataTable id="datalist"
+                         value="#{movimientosController.items}"
+                         lazy="false"
+                         rowKey="#{item.idMovimiento}"
+                         var="item"
+                         paginator="true"
+                         rows="20"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{movimientosController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{movimientosController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idMovimiento}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:MovimientosDataTableContextMenu" listener="#{movimientosController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:MovimientosDataTableContextMenu" listener="#{movimientosController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{movimientosController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('MovimientosListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idMovimiento}" filterBy="#{item.idMovimiento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_idMovimiento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idMovimiento}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.saldoInicial}" filterBy="#{item.saldoInicial}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_saldoInicial}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.saldoInicial}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.debito}" filterBy="#{item.debito}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_debito}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.debito}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.credito}" filterBy="#{item.credito}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_credito}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.credito}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.saldoDisponible}" filterBy="#{item.saldoDisponible}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_saldoDisponible}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.saldoDisponible}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.idCliente.idCliente}" filterBy="#{item.idCliente.idCliente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListMovimientosTitle_idCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCliente.idCliente}"/>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"   icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{movimientosController.prepareCreate}" update=":MovimientosCreateForm" oncomplete="PF('MovimientosCreateDialog').show()"/>
+            <p:commandButton id="viewButton"    style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":MovimientosViewForm" oncomplete="PF('MovimientosViewDialog').show()" />
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":MovimientosEditForm" oncomplete="PF('MovimientosEditDialog').show()" />
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{movimientosController.delete}" update=":growl,datalist" >
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+            <div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Clientes" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Clientes"/>
+                </h:commandLink>
+                
+                
+            </div>
+            
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

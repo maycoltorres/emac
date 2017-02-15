@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+   
+    
+    
+    <h:form id="ClientesListForm" enctype="multipart/form-data">
+        
+        
+        
+        <p:panel header="#{myBundle.ListClientesTitle}">
+            <p:contextMenu id="ClientesDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ClientesListForm:createButton').click();" icon="ui-icon-plus" disabled="#{empty clientesController.selected}"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ClientesListForm:viewButton').click();" icon="ui-icon-search" disabled="#{empty clientesController.selected}"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ClientesListForm:editButton').click();" icon="ui-icon-pencil" disabled="#{empty clientesController.selected}"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ClientesListForm:deleteButton').click();" icon="ui-icon-trash" disabled="#{empty clientesController.selected}"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ClientesMenuItem_movimientosCollection}" icon="ui-icon-search"  action="#{clientesController.navigateMovimientosCollection}"  ajax="false"/>  
+            </p:contextMenu>
+            
+            
+            <p:dataTable id="datalist"
+                         value="#{clientesController.items}"
+                         lazy="false"
+                         rowKey="#{item.idCliente}"
+                         var="item"
+                         paginator="true"
+                         rows="20"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{clientesController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{clientesController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idCliente}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ClientesDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ClientesDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ClientesListForm:viewButton').click();"/>
+
+              <p:column sortBy="#{item.idCliente}" filterBy="#{item.idCliente}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_idCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCliente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreCliente}" filterBy="#{item.nombreCliente}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_nombreCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreCliente}"/>
+                </p:column>
+
+
+                
+
+
+                
+
+
+                <p:column sortBy="#{item.porcentajeDescuento}" filterBy="#{item.porcentajeDescuento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_porcentajeDescuento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.porcentajeDescuento}"/>
+                </p:column>
+
+                
+                <p:column sortBy="#{item.topeMaximo}" filterBy="#{item.topeMaximo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_topeMaximo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.topeMaximo}"/>
+                </p:column>
+                
+                
+                <p:column sortBy="#{item.tipoFuncionario}" filterBy="#{item.tipoFuncionario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_tipoFuncionario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipoFuncionario}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.fechaCreacion}" filterBy="#{item.fechaCreacion}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListClientesTitle_fechaCreacion}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaCreacion}"/>
+                </p:column>
+
+          
+                                    <p:column sortBy="#{item.fechaModificacion}" filterBy="#{item.fechaModificacion}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListClientesTitle_fechaModificacion}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fechaModificacion}"/>
+                                    </p:column>
+            
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{clientesController.prepareCreate}" update=":ClientesCreateForm" oncomplete="PF('ClientesCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":ClientesViewForm" oncomplete="PF('ClientesViewDialog').show()" />
+            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ClientesEditForm" oncomplete="PF('ClientesEditDialog').show()" />
+            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{clientesController.delete}" update=":growl,datalist" >
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+      <div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Clientes" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Clientes"/>
+                </h:commandLink>
+  
+            </div>
+        <!--    <p:fileUpload />
+            <p:fileUpload value="Cargar Fijos" />
+            <p:fileUpload value="Cargar Cliente Especifico" />
+-->
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+    
+    <h:form enctype="multipart/form-data">
+        <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload}" mode="advanced" dragDropSupport="false" cancelLabel="Cancelar" label="Listado de Clientes" uploadLabel="Subir Archivo" 
+           update="message"  allowTypes="/(\.|\/)(xlsx)$/" />
+ 
+    
+        <p:messages id="message" showDetail="true" closable="true"/> 
+</h:form>
+   
+   
+
+</ui:composition>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="UsuariosCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateUsuariosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:UsuariosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="UsuariosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{usuariosController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuariosLabel_nombre}" for="nombre" />
+                            <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.CreateUsuariosTitle_nombre}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_nombre}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuariosLabel_clave}" for="clave" />
+                            <p:inputText id="clave" value="#{usuariosController.selected.clave}" title="#{myBundle.CreateUsuariosTitle_clave}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_clave}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuariosLabel_rol}" for="rol" />
+                            <p:inputText id="rol" value="#{usuariosController.selected.rol}" title="#{myBundle.CreateUsuariosTitle_rol}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_rol}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuariosLabel_fechaCreacion}" for="fechaCreacion" />
+                            <p:inputText id="fechaCreacion" value="#{usuariosController.selected.fechaCreacion}" title="#{myBundle.CreateUsuariosTitle_fechaCreacion}" size="45" maxlength="45"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateUsuariosLabel_fechaModificacion}" for="fechaModificacion" />
+                            <p:inputText id="fechaModificacion" value="#{usuariosController.selected.fechaModificacion}" title="#{myBundle.CreateUsuariosTitle_fechaModificacion}" size="45" maxlength="45"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{usuariosController.saveNew}" value="#{myBundle.Save}" update="display,:UsuariosListPage:UsuariosListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:UsuariosListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+   
+    <h:form>
+    
+<p:growl id="msgs" showDetail="true" />
+            <p:outputLabel for="Inicio" value="Fecha Inicio:" />
+        <p:calendar id="Inicio" value="#{calendarView.date3}" showOn="button" />
+        
+        <p:outputLabel for="Fin" value="Fecha Fin:" />
+        <p:calendar id="Fin" value="#{calendarView.date3}" showOn="button" />
+            <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
+</h:form>
+    
+    <h:form id="PuntosListForm">
+
+        <p:panel header="#{myBundle.ListPuntosTitle}">
+            <p:contextMenu id="PuntosDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('PuntosListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('PuntosListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('PuntosListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('PuntosListForm:deleteButton').click();" icon="ui-icon-trash"/>
+            </p:contextMenu>
+           
+            
+            <p:dataTable id="datalist"
+                         value="#{puntosController.items}"
+                         lazy="false"
+                         rowKey="#{item.idCliente}"
+                         var="item"
+                         paginator="true"
+                         rows="20"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{puntosController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{puntosController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.idCliente}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PuntosDataTableContextMenu"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:PuntosDataTableContextMenu"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('PuntosListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.idCliente}" filterBy="#{item.idCliente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_idCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idCliente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.nombreCliente}" filterBy="#{item.nombreCliente}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_nombreCliente}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nombreCliente}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.hotelV}" filterBy="#{item.hotelV}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_hotelV}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.hotelV}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.gigisUsaquen}" filterBy="#{item.gigisUsaquen}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_gigisUsaquen}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gigisUsaquen}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.gigisZonaG}" filterBy="#{item.gigisZonaG}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_gigisZonaG}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.gigisZonaG}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.bar440}" filterBy="#{item.bar440}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListPuntosTitle_bar440}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.bar440}"/>
+                </p:column>
+
+           
+                                    <p:column sortBy="#{item.blackSheep}" filterBy="#{item.blackSheep}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_blackSheep}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.blackSheep}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.bierMarket}" filterBy="#{item.bierMarket}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_bierMarket}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.bierMarket}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.marquez}" filterBy="#{item.marquez}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_marquez}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.marquez}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.bungalow}" filterBy="#{item.bungalow}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_bungalow}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.bungalow}"/>
+                                    </p:column>
+               
+                                    <p:column sortBy="#{item.matildelina}" filterBy="#{item.matildelina}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_matildelina}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.matildelina}"/>
+                                    </p:column>
+                
+                                    <p:column sortBy="#{item.totalConsumo}" filterBy="#{item.totalConsumo}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListPuntosTitle_totalConsumo}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.totalConsumo}"/>
+                                    </p:column>
+                
+
+            </p:dataTable>
+<p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":PuntosViewForm" oncomplete="PF('PuntosViewDialog').show()" />
+            <p:commandButton id="createButton" style="visibility: hidden;" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{puntosController.prepareCreate}" update=":PuntosCreateForm" oncomplete="PF('PuntosCreateDialog').show()"/>
+            
+            <p:commandButton id="editButton"   style="visibility: hidden;" icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PuntosEditForm" oncomplete="PF('PuntosEditDialog').show()" />
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{puntosController.delete}" update=":growl,datalist" >
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+<div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Clientes" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Clientes"/>
+                </h:commandLink>
+                
+                
+            </div>
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

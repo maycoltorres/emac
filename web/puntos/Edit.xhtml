@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PuntosEditDlg" widgetVar="PuntosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPuntosTitle}" closeOnEscape="true">
+
+            <h:form id="PuntosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{puntosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPuntosLabel_idCliente}" for="idCliente" />
+                        <h:outputText id="idCliente" value="#{puntosController.selected.idCliente}" />
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_nombreCliente}" for="nombreCliente" />
+                        <p:inputText id="nombreCliente" value="#{puntosController.selected.nombreCliente}" title="#{myBundle.EditPuntosTitle_nombreCliente}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_nombreCliente}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_hotelV}" for="hotelV" />
+                        <p:inputText id="hotelV" value="#{puntosController.selected.hotelV}" title="#{myBundle.EditPuntosTitle_hotelV}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_hotelV}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_gigisUsaquen}" for="gigisUsaquen" />
+                        <p:inputText id="gigisUsaquen" value="#{puntosController.selected.gigisUsaquen}" title="#{myBundle.EditPuntosTitle_gigisUsaquen}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_gigisUsaquen}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_gigisZonaG}" for="gigisZonaG" />
+                        <p:inputText id="gigisZonaG" value="#{puntosController.selected.gigisZonaG}" title="#{myBundle.EditPuntosTitle_gigisZonaG}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_gigisZonaG}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_bar440}" for="bar440" />
+                        <p:inputText id="bar440" value="#{puntosController.selected.bar440}" title="#{myBundle.EditPuntosTitle_bar440}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_bar440}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_blackSheep}" for="blackSheep" />
+                        <p:inputText id="blackSheep" value="#{puntosController.selected.blackSheep}" title="#{myBundle.EditPuntosTitle_blackSheep}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_blackSheep}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_bierMarket}" for="bierMarket" />
+                        <p:inputText id="bierMarket" value="#{puntosController.selected.bierMarket}" title="#{myBundle.EditPuntosTitle_bierMarket}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_bierMarket}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_marquez}" for="marquez" />
+                        <p:inputText id="marquez" value="#{puntosController.selected.marquez}" title="#{myBundle.EditPuntosTitle_marquez}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_marquez}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_bungalow}" for="bungalow" />
+                        <p:inputText id="bungalow" value="#{puntosController.selected.bungalow}" title="#{myBundle.EditPuntosTitle_bungalow}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_bungalow}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_matildelina}" for="matildelina" />
+                        <p:inputText id="matildelina" value="#{puntosController.selected.matildelina}" title="#{myBundle.EditPuntosTitle_matildelina}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_matildelina}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPuntosLabel_totalConsumo}" for="totalConsumo" />
+                        <p:inputText id="totalConsumo" value="#{puntosController.selected.totalConsumo}" title="#{myBundle.EditPuntosTitle_totalConsumo}" required="true" requiredMessage="#{myBundle.EditPuntosRequiredMessage_totalConsumo}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{puntosController.save}" value="#{myBundle.Save}" update="display,:PuntosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PuntosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PuntosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

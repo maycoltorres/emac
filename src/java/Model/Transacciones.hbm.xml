@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/02/2017 01:11:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Transacciones" table="transacciones" catalog="emacdatabase" optimistic-lock="version">
+        <id name="idTransaccion" type="int">
+            <column name="idTransaccion" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreCliente" type="string">
+            <column name="nombreCliente" length="45" not-null="true" />
+        </property>
+        <property name="idPunto" type="int">
+            <column name="idPunto" not-null="true" />
+        </property>
+        <property name="punto" type="string">
+            <column name="punto" length="45" not-null="true" />
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" length="45" />
+        </property>
+        <property name="hora" type="string">
+            <column name="hora" length="45" />
+        </property>
+        <property name="idProducto" type="int">
+            <column name="idProducto" not-null="true" />
+        </property>
+        <property name="descProducto" type="string">
+            <column name="descProducto" length="45" not-null="true" />
+        </property>
+        <property name="cantidad" type="int">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="valorNeto" type="float">
+            <column name="valorNeto" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="valorDesc" type="float">
+            <column name="valorDesc" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="porcentajeDesc" type="float">
+            <column name="porcentajeDesc" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="totalConsumo" type="float">
+            <column name="totalConsumo" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="cajero" type="string">
+            <column name="cajero" length="45" not-null="true" />
+        </property>
+        <property name="mesero" type="string">
+            <column name="mesero" length="45" not-null="true" />
+        </property>
+        <property name="numDocumento" type="string">
+            <column name="numDocumento" length="45" not-null="true" />
+        </property>
+        <property name="tipoDocumento" type="string">
+            <column name="tipoDocumento" length="45" not-null="true" />
+        </property>
+        <property name="numLicencia" type="string">
+            <column name="numLicencia" length="45" not-null="true" />
+        </property>
+        <property name="fechaTransaccion" type="string">
+            <column name="fechaTransaccion" length="45" />
+        </property>
+        <property name="tipoFuncionario" type="string">
+            <column name="tipoFuncionario" length="45" not-null="true" />
+        </property>
+        <property name="topeMax" type="float">
+            <column name="TopeMax" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

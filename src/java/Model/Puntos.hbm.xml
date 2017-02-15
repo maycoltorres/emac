@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/02/2017 01:11:03 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Puntos" table="puntos" catalog="emacdatabase" optimistic-lock="version">
+        <id name="idCliente" type="int">
+            <column name="idCliente" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreCliente" type="string">
+            <column name="nombreCliente" length="45" not-null="true" />
+        </property>
+        <property name="hotelV" type="float">
+            <column name="Hotel_V" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="gigisUsaquen" type="float">
+            <column name="Gigis_Usaquen" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="gigisZonaG" type="float">
+            <column name="Gigis_Zona_G" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="bar440" type="float">
+            <column name="Bar_440" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="blackSheep" type="float">
+            <column name="Black_Sheep" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="bierMarket" type="float">
+            <column name="Bier_Market" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="marquez" type="float">
+            <column name="Marquez" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="bungalow" type="float">
+            <column name="Bungalow" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="matildeLina" type="float">
+            <column name="Matilde_lina" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="totalConsumo" type="float">
+            <column name="Total_Consumo" precision="12" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

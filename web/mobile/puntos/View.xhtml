@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PuntosViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPuntosTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PuntosListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PuntosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{puntosController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_idCliente}"/>
+                            <h:outputText value="#{puntosController.selected.idCliente}" title="#{myBundle.ViewPuntosTitle_idCliente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_nombreCliente}"/>
+                            <h:outputText value="#{puntosController.selected.nombreCliente}" title="#{myBundle.ViewPuntosTitle_nombreCliente}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_hotelV}"/>
+                            <h:outputText value="#{puntosController.selected.hotelV}" title="#{myBundle.ViewPuntosTitle_hotelV}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_gigisUsaquen}"/>
+                            <h:outputText value="#{puntosController.selected.gigisUsaquen}" title="#{myBundle.ViewPuntosTitle_gigisUsaquen}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_gigisZonaG}"/>
+                            <h:outputText value="#{puntosController.selected.gigisZonaG}" title="#{myBundle.ViewPuntosTitle_gigisZonaG}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_bar440}"/>
+                            <h:outputText value="#{puntosController.selected.bar440}" title="#{myBundle.ViewPuntosTitle_bar440}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_blackSheep}"/>
+                            <h:outputText value="#{puntosController.selected.blackSheep}" title="#{myBundle.ViewPuntosTitle_blackSheep}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_bierMarket}"/>
+                            <h:outputText value="#{puntosController.selected.bierMarket}" title="#{myBundle.ViewPuntosTitle_bierMarket}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_marquez}"/>
+                            <h:outputText value="#{puntosController.selected.marquez}" title="#{myBundle.ViewPuntosTitle_marquez}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_bungalow}"/>
+                            <h:outputText value="#{puntosController.selected.bungalow}" title="#{myBundle.ViewPuntosTitle_bungalow}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_matildelina}"/>
+                            <h:outputText value="#{puntosController.selected.matildelina}" title="#{myBundle.ViewPuntosTitle_matildelina}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPuntosLabel_totalConsumo}"/>
+                            <h:outputText value="#{puntosController.selected.totalConsumo}" title="#{myBundle.ViewPuntosTitle_totalConsumo}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

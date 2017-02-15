@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UsuariosEditDlg" widgetVar="UsuariosEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditUsuariosTitle}" closeOnEscape="true">
+
+            <h:form id="UsuariosEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{usuariosController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditUsuariosLabel_idusuario}" for="idusuario" />
+                        <h:outputText id="idusuario" value="#{usuariosController.selected.idusuario}" />
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.EditUsuariosTitle_nombre}" required="true" requiredMessage="#{myBundle.EditUsuariosRequiredMessage_nombre}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{usuariosController.selected.clave}" title="#{myBundle.EditUsuariosTitle_clave}" required="true" requiredMessage="#{myBundle.EditUsuariosRequiredMessage_clave}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_rol}" for="rol" />
+                        <p:inputText id="rol" value="#{usuariosController.selected.rol}" title="#{myBundle.EditUsuariosTitle_rol}" required="true" requiredMessage="#{myBundle.EditUsuariosRequiredMessage_rol}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_fechaCreacion}" for="fechaCreacion" />
+                        <p:inputText id="fechaCreacion" value="#{usuariosController.selected.fechaCreacion}" title="#{myBundle.EditUsuariosTitle_fechaCreacion}" size="45" maxlength="45"/>
+
+                        <p:outputLabel value="#{myBundle.EditUsuariosLabel_fechaModificacion}" for="fechaModificacion" />
+                        <p:inputText id="fechaModificacion" value="#{usuariosController.selected.fechaModificacion}" title="#{myBundle.EditUsuariosTitle_fechaModificacion}" size="45" maxlength="45"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuariosController.save}" value="#{myBundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuariosEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UsuariosEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

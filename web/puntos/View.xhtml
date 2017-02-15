@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PuntosViewDlg" widgetVar="PuntosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewPuntosTitle}" closeOnEscape="true">
+
+            <h:form id="PuntosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{puntosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_idCliente}"/>
+                        <h:outputText value="#{puntosController.selected.idCliente}" title="#{myBundle.ViewPuntosTitle_idCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_nombreCliente}"/>
+                        <h:outputText value="#{puntosController.selected.nombreCliente}" title="#{myBundle.ViewPuntosTitle_nombreCliente}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_hotelV}"/>
+                        <h:outputText value="#{puntosController.selected.hotelV}" title="#{myBundle.ViewPuntosTitle_hotelV}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_gigisUsaquen}"/>
+                        <h:outputText value="#{puntosController.selected.gigisUsaquen}" title="#{myBundle.ViewPuntosTitle_gigisUsaquen}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_gigisZonaG}"/>
+                        <h:outputText value="#{puntosController.selected.gigisZonaG}" title="#{myBundle.ViewPuntosTitle_gigisZonaG}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_bar440}"/>
+                        <h:outputText value="#{puntosController.selected.bar440}" title="#{myBundle.ViewPuntosTitle_bar440}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_blackSheep}"/>
+                        <h:outputText value="#{puntosController.selected.blackSheep}" title="#{myBundle.ViewPuntosTitle_blackSheep}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_bierMarket}"/>
+                        <h:outputText value="#{puntosController.selected.bierMarket}" title="#{myBundle.ViewPuntosTitle_bierMarket}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_marquez}"/>
+                        <h:outputText value="#{puntosController.selected.marquez}" title="#{myBundle.ViewPuntosTitle_marquez}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_bungalow}"/>
+                        <h:outputText value="#{puntosController.selected.bungalow}" title="#{myBundle.ViewPuntosTitle_bungalow}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_matildelina}"/>
+                        <h:outputText value="#{puntosController.selected.matildelina}" title="#{myBundle.ViewPuntosTitle_matildelina}"/>
+
+                        <h:outputText value="#{myBundle.ViewPuntosLabel_totalConsumo}"/>
+                        <h:outputText value="#{puntosController.selected.totalConsumo}" title="#{myBundle.ViewPuntosTitle_totalConsumo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('PuntosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

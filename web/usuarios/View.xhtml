@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosViewDlg" widgetVar="UsuariosViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewUsuariosTitle}" closeOnEscape="true">
+
+            <h:form id="UsuariosViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{usuariosController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_idusuario}"/>
+                        <h:outputText value="#{usuariosController.selected.idusuario}" title="#{myBundle.ViewUsuariosTitle_idusuario}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_nombre}"/>
+                        <h:outputText value="#{usuariosController.selected.nombre}" title="#{myBundle.ViewUsuariosTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_clave}"/>
+                        <h:outputText value="#{usuariosController.selected.clave}" title="#{myBundle.ViewUsuariosTitle_clave}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_rol}"/>
+                        <h:outputText value="#{usuariosController.selected.rol}" title="#{myBundle.ViewUsuariosTitle_rol}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_fechaCreacion}"/>
+                        <h:outputText value="#{usuariosController.selected.fechaCreacion}" title="#{myBundle.ViewUsuariosTitle_fechaCreacion}"/>
+
+                        <h:outputText value="#{myBundle.ViewUsuariosLabel_fechaModificacion}"/>
+                        <h:outputText value="#{usuariosController.selected.fechaModificacion}" title="#{myBundle.ViewUsuariosTitle_fechaModificacion}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('UsuariosViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

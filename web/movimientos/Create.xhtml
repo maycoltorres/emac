@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MovimientosCreateDlg" widgetVar="MovimientosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateMovimientosTitle}" closeOnEscape="true">
+
+            <h:form id="MovimientosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{movimientosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateMovimientosLabel_saldoInicial}" for="saldoInicial" />
+                        <p:inputText id="saldoInicial" value="#{movimientosController.selected.saldoInicial}" title="#{myBundle.CreateMovimientosTitle_saldoInicial}" required="true" requiredMessage="#{myBundle.CreateMovimientosRequiredMessage_saldoInicial}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimientosLabel_debito}" for="debito" />
+                        <p:inputText id="debito" value="#{movimientosController.selected.debito}" title="#{myBundle.CreateMovimientosTitle_debito}" required="true" requiredMessage="#{myBundle.CreateMovimientosRequiredMessage_debito}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimientosLabel_credito}" for="credito" />
+                        <p:inputText id="credito" value="#{movimientosController.selected.credito}" title="#{myBundle.CreateMovimientosTitle_credito}" required="true" requiredMessage="#{myBundle.CreateMovimientosRequiredMessage_credito}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimientosLabel_saldoDisponible}" for="saldoDisponible" />
+                        <p:inputText id="saldoDisponible" value="#{movimientosController.selected.saldoDisponible}" title="#{myBundle.CreateMovimientosTitle_saldoDisponible}" required="true" requiredMessage="#{myBundle.CreateMovimientosRequiredMessage_saldoDisponible}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateMovimientosLabel_idCliente}" for="idCliente" />
+                        <p:selectOneMenu id="idCliente" value="#{movimientosController.selected.idCliente}" required="true" requiredMessage="#{myBundle.CreateMovimientosRequiredMessage_idCliente}" converter="clientesConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientesController.items}"
+                                           var="idClienteItem"
+                                           itemValue="#{idClienteItem}"
+                                           itemLabel="#{idClienteItem.idCliente.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{movimientosController.saveNew}" value="#{myBundle.Save}" update="display,:MovimientosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MovimientosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('MovimientosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
