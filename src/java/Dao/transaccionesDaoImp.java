@@ -8,6 +8,7 @@ package Dao;
 import HibernateUtil.HibernateUtil;
 import Model.Transacciones;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -41,18 +42,17 @@ public class transaccionesDaoImp implements transaccionesDao{
     }
 
     @Override
-    public List<Transacciones> listarTransaccionesFecha(int fecha1, int fecha2) {
-         fecha1=1;
-         fecha2=2;
+    public List<Transacciones> listarTransaccionesFecha(Date fecha1, Date fecha2) {
+
         System.out.println("********************************************************************************Fecha 1 y fecha 2 " +fecha1 + fecha2);
         List<Transacciones> listarTransaccionesFecha= null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
-        String hql="from Transacciones  t where t.cantidad between " + fecha1 + " and " + fecha2 ;
+        String sql="SELECT * from transacciones where STR_TO_DATE(fecha, '%d/%m/%Y %H:%i:%s') BETWEEN STR_TO_DATE('11/01/2017 00:00:00', '%d/%m/%Y %H:%i:%s') and STR_TO_DATE('08/02/2017 00:00:00', '%d/%m/%Y %H:%i:%s')" ;
         
         try{
-            listarTransaccionesFecha = session.createQuery(hql).list();
+            listarTransaccionesFecha = (List<Transacciones>) session.createSQLQuery(sql);
 
             System.out.println("//////////////////"+listarTransaccionesFecha);
             transaction.commit();

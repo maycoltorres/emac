@@ -8,6 +8,7 @@ import Dao.transaccionesDao;
 import Dao.transaccionesDaoImp;
 import Model.Transacciones;
 import Model.transaccionesPojo;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -66,7 +67,7 @@ public class transaccionesJSFManagedBean {
         this.filtroCliente = filtroCliente;
     }
 
-    public List<Transacciones> getFecha(int fecha1, int fecha2) {
+    public List<Transacciones> getFecha(Date fecha1, Date fecha2) {
         transaccionesDao cDao = new transaccionesDaoImp();
         fecha=  cDao.listarTransaccionesFecha(fecha1,fecha2);
         return fecha;
