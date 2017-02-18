@@ -16,6 +16,7 @@ public interface transaccionesDao {
     public List<Transacciones> listarTransaccionesRes();
 
     public List<Transacciones> listarTransaccionesFecha(int fecha1, int fecha2);
-
+    
+    public List<Transacciones> listarTotalConsumo();
    
 }

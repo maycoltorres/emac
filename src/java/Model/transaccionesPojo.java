@@ -17,6 +17,9 @@ public class transaccionesPojo {
     Float porcentaje;
     String tipo;
     Double total;
+    Double totalDescuento;
+    Double totalNeto;
+    
 
     public transaccionesPojo(String cliente, Float tope, Float porcentaje, String tipo, Double total) {
         this.cliente = cliente;
@@ -24,6 +27,12 @@ public class transaccionesPojo {
         this.porcentaje = porcentaje;
         this.tipo = tipo;
         this.total = total;
+    }
+
+    public transaccionesPojo(Double total,Double totalDescuento,Double totalNeto) {
+        this.totalDescuento = totalDescuento;
+        this.totalNeto = totalNeto;
+        this.total = totalNeto;
     }
 
     public String getCliente() {
@@ -64,6 +73,22 @@ public class transaccionesPojo {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public Double getTotalDescuento() {
+        return totalDescuento;
+    }
+
+    public void setTotalDescuento(Double totalDescuento) {
+        this.totalDescuento = totalDescuento;
+    }
+
+    public Double getTotalNeto() {
+        return totalNeto;
+    }
+
+    public void setTotalNeto(Double totalNeto) {
+        this.totalNeto = totalNeto;
     }
 
 

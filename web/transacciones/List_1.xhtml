@@ -8,20 +8,21 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
- <h:form>
-        <p:growl id="msgs" showDetail="true" />
+    
+    
+    <h:form id="TransaccionesListForm">
+       
+        <p:panel header="Reporte Resumido"></p:panel>
+         
+        <p:panel>
+            
+             <p:growl id="msgs" showDetail="true" />
         <p:outputLabel for="Inicio" value="Fecha Inicio:" />
         <p:calendar id="Inicio" value="#{calendarView.date3}" showOn="button" />
 
         <p:outputLabel for="Fin" value="Fecha Fin:" />
         <p:calendar id="Fin" value="#{calendarView.date3}" showOn="button" />
         <p:commandButton value="Submit" update="msgs" actionListener="#{calendarView.click}" icon="ui-icon-check" />
-
-    </h:form>
-    
-    <h:form id="TransaccionesListForm">
-        <p:panel header="Reporte Resumido"></p:panel>
-        <p:panel>
         <p:dataTable id="datalist" var="transac" value="#{transaccionesJSFManagedBean.listar}" 
                      filteredValue="#{transaccionesJSFManagedBean.filtroCliente}"
                          emptyMessage="No se encontro registro" 
@@ -47,7 +48,7 @@
                     <h:outputText value="#{transac.tipo}"/>
                 </p:column>
       
-                <p:column headerText="Consumo">
+                <p:column headerText="Total Consumo">
                     <h:outputText value="#{transac.total}"/>
                 </p:column>
                 

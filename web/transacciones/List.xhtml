@@ -6,7 +6,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-    
+  <!--  
     <h:form>
         <p:growl id="msgs" showDetail="true" />
         <p:outputLabel for="fecha1" value="Fecha Inicio:" />
@@ -17,6 +17,7 @@
         <p:commandButton value="Submit" update="msgs" actionListener="#{transaccionesJSFManagedBean.getFecha(fecha1, fecha2)}" icon="ui-icon-check" />
 
     </h:form>
+-->
 
     
     <h:form id="TransaccionesListForm">
@@ -29,6 +30,9 @@
                 <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('TransaccionesListForm:deleteButton').click();" icon="ui-icon-trash"/>
             </p:contextMenu>
         
+            
+             
+            
             <p:dataTable id="datalist"
                          value="#{transaccionesController.items}"
                          lazy="false"
@@ -209,6 +213,9 @@
                
 -->
             </p:dataTable>
+        
+        
+        
 
             <p:commandButton id="createButton" style="visibility: hidden;" icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{transaccionesController.prepareCreate}" update=":TransaccionesCreateForm" oncomplete="PF('TransaccionesCreateDialog').show()"/>
             <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":TransaccionesViewForm" oncomplete="PF('TransaccionesViewDialog').show()" />
@@ -235,5 +242,55 @@
         </p:panel>
         <ui:include src="/confirmation.xhtml"/>
     </h:form>
+
+
+<h:form id="sumatoriasListForm">
+       
+        
+         
+        <p:panel>
+
+        
+            <p:dataTable id="datalistsuma" var="suma" value="#{transaccionesJSFManagedBean.listarTotalConsumo}" 
+                     
+                         emptyMessage="No se encontro registro" 
+                         rows="10"
+                         paginator="false"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+            
+            
+           
+      
+                <p:column headerText="Valor Neto">
+                    <h:outputText value="#{suma.totalNeto}"/>
+                </p:column>
+                <p:column headerText="Valor Descuento">
+                    <h:outputText value="#{suma.totalDescuento}"/>
+                </p:column>
+                <p:column headerText="Valor Consumo">
+                    <h:outputText value="#{suma.total}"/>
+                </p:column>
+                
+          
+            </p:dataTable>
+            </p:panel>
+        <div align="right">
+
+                <h:commandLink>
+                    <p:graphicImage name="/img/excel.png" width="24"/>
+                    <p:dataExporter type="xls" target="datalist" fileName="Resumido" />
+                </h:commandLink>
+
+                <h:commandLink>
+                    <p:graphicImage name="img/pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="datalist" fileName="Resumido"/>
+                </h:commandLink>
+                
+                
+            </div>
+        </h:form>
+
+
 
 </ui:composition>

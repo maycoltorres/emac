@@ -22,8 +22,19 @@ public class transaccionesJSFManagedBean {
 
     private List<transaccionesPojo> filtroCliente ;
     private List<Transacciones> listar;
+    private List<Transacciones> listarTotalConsumo;
     private List<Transacciones> fecha;
     private Transacciones transacciones;
+
+    public List<Transacciones> getListarTotalConsumo() {
+        transaccionesDao cDao = new transaccionesDaoImp();
+        listar= cDao.listarTotalConsumo();
+        return listar;
+    }
+
+    public void setListarTotalConsumo(List<Transacciones> listarTotalConsumo) {
+        this.listarTotalConsumo = listarTotalConsumo;
+    }
     
     
     public transaccionesJSFManagedBean() {

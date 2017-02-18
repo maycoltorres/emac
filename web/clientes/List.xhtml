@@ -7,11 +7,9 @@
                 xmlns:p="http://primefaces.org/ui">
    
     
-    
     <h:form id="ClientesListForm" enctype="multipart/form-data">
         
-        
-        
+       
         <p:panel header="#{myBundle.ListClientesTitle}">
             <p:contextMenu id="ClientesDataTableContextMenu" for="datalist">  
                 <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ClientesListForm:createButton').click();" icon="ui-icon-plus" disabled="#{empty clientesController.selected}"/>
@@ -22,6 +20,8 @@
                 <p:menuitem value="#{myBundle.ClientesMenuItem_movimientosCollection}" icon="ui-icon-search"  action="#{clientesController.navigateMovimientosCollection}"  ajax="false"/>  
             </p:contextMenu>
             
+              
+        
             
             <p:dataTable id="datalist"
                          value="#{clientesController.items}"
@@ -145,7 +145,9 @@
     
         <p:messages id="message" showDetail="true" closable="true"/> 
 </h:form>
-   
-   
-
+    <h:form enctype="multipart/form-data" id="actualizaSaldo">
+        <p:commandButton id="fijosButton"    icon="ui-icon-arrowreturnthick-1-n" value="Actualizar saldo Fijos" update="" action="#{movimientosJSFManagedBean.actualizaFijos}" />
+            <p:commandButton id="turnantesButton"    icon="ui-icon-arrowreturnthick-1-n" value="Actualizar saldo Turnantes" update="" oncomplete="" />
+            <p:commandButton id="funcionarioButton"    icon="ui-icon-arrowreturnthick-1-n" value="Actualizar saldo por Funcionario" update="" oncomplete="" />
+</h:form>
 </ui:composition>

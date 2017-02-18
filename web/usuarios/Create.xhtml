@@ -30,7 +30,7 @@
                         </p:selectOneMenu>
                         
                         
-                        
+                        <h:outputText value="#{now}"> <f:convertDateTime pattern="MM/dd/yyyy" type="date" /> </h:outputText>
                         
                         <p:outputLabel value="#{myBundle.CreateUsuariosLabel_fechaCreacion}" for="fechaCreacion" />
                         <p:inputText id="fechaCreacion" value="#{usuariosController.selected.fechaCreacion}" title="#{myBundle.CreateUsuariosTitle_fechaCreacion}" size="45" maxlength="45"/>

@@ -87,6 +87,31 @@ public class transaccionesDaoImp implements transaccionesDao{
 //        
 //    }
 
+
+
+    @Override
+    public List<Transacciones> listarTotalConsumo() {
+        List<Transacciones> listarTransacciones= null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql="select new Model.transaccionesPojo(sum(t.totalConsumo),sum(t.valorNeto),sum(t.valorDesc)) from Transacciones t";
+        
+        try{
+            listarTransacciones = session.createQuery(hql).list();
+
+            System.out.println("//////////////////"+listarTransacciones);
+            transaction.commit();
+            session.close();
+        }catch(HibernateException e){
+            System.out.println(e.getMessage());
+            transaction.rollback();
+        }
+        return listarTransacciones;
+    }
+
+  
+
     
     
 }

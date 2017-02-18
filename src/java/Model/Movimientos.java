@@ -15,6 +15,10 @@ public class Movimientos  implements java.io.Serializable {
      private float debito;
      private float credito;
      private float saldoDisponible;
+     private float topeMaximo;
+     private float topeMaximo0;
+     private int i;
+     private int i0;
 
     public Movimientos() {
     }
@@ -26,6 +30,14 @@ public class Movimientos  implements java.io.Serializable {
        this.debito = debito;
        this.credito = credito;
        this.saldoDisponible = saldoDisponible;
+    }
+
+    public Movimientos(Float topeMaximo, int i, int i0, Float topeMaximo0, int idCliente) {
+        this.topeMaximo = topeMaximo;
+        this.i = i;
+        this.i0 = i0;
+        this.topeMaximo0 = topeMaximo0;
+        this.clientes = clientes;
     }
    
     public int getIdMovimiento() {
@@ -69,6 +81,30 @@ public class Movimientos  implements java.io.Serializable {
     
     public void setSaldoDisponible(float saldoDisponible) {
         this.saldoDisponible = saldoDisponible;
+    }
+
+    public float getTopeMaximo() {
+        return topeMaximo;
+    }
+
+    public void setTopeMaximo(float topeMaximo) {
+        this.topeMaximo = topeMaximo;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getI0() {
+        return i0;
+    }
+
+    public void setI0(int i0) {
+        this.i0 = i0;
     }
 
 
